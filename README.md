@@ -10,8 +10,6 @@ Automate the setup of an initial Bootstrap application on your local host using 
 - [Installation](#installation)
 - [Usage](#usage)
 - [CI/CD with Jenkins](#cicd-with-jenkins)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
@@ -70,6 +68,3 @@ If you'd like to contribute to this project, please follow these guidelines:
 
 4. Submit a pull request with a clear description of your changes.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
