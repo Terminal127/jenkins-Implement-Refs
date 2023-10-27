@@ -4,10 +4,16 @@ pipeline {
     agent any
     
     stages {
-        stage('Pull Docker Image') {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
+        stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.image('the127terminal/new:latest')
+                    dockerImage = docker.build('the127terminal/new:latest', "-f website/Dockerfile website")
                 }
             }
         }
@@ -15,7 +21,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    dockerImage.run("-p 8081:80 -d")
+                    dockerImage.run('-p 8081:80 -d')
                 }
             }
         }
