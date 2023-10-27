@@ -13,7 +13,7 @@ pipeline {
             steps {
                 // Build the Docker image using the Dockerfile in the 'website' directory
                 script {
-                    def dockerImage = docker.build('<your-image-name>:latest', "-f website/Dockerfile .")
+                    def dockerImage = docker.build('website:latest', "-f website/Dockerfile .")
                 }
             }
         }
