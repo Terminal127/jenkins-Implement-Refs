@@ -4,24 +4,24 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Check out your GitHub repository
                 checkout scm
             }
         }
         
         stage('Build Docker Image') {
             steps {
-                // Build the Docker image using the Dockerfile in the 'website' directory
                 script {
+                    // Define the dockerImage variable here
                     def dockerImage = docker.build('website:latest', "-f website/Dockerfile .")
                 }
+                // This stage will end, but the dockerImage variable is still accessible
             }
         }
         
         stage('Run Docker Container') {
             steps {
-                // Run the Docker container, mapping port 8081 to 80
                 script {
+                    // Access the dockerImage variable defined in the previous stage
                     dockerImage.run('-p 8081:80 -d')
                 }
             }
@@ -30,11 +30,12 @@ pipeline {
     
     post {
         always {
-            // Clean up - stop and remove the container
             script {
+                // Access the dockerImage variable for cleanup
                 dockerImage.stop()
                 dockerImage.remove()
             }
         }
     }
 }
+
