@@ -13,7 +13,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build('website:latest', "-f website/Dockerfile .")
+                    dockerImage = docker.build('the127terminal/website:latest', "-f website/Dockerfile .")
                 }
             }
         }
