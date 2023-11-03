@@ -25,7 +25,7 @@ pipeline {
         always {
             script {
                 // Stop and remove the NGINX container
-                
+                sh 'echo "HELLO"'
             }
         }
     }
