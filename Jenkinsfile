@@ -1,15 +1,15 @@
-def dockerImage // Define the dockerImage variable at the top level
+def dockerImage
 
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-        
+
         stage('Build Docker Image') {
             steps {
                 script {
@@ -17,7 +17,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Run Docker Container') {
             steps {
                 script {
@@ -26,13 +26,15 @@ pipeline {
             }
         }
     }
-    
+
     post {
         always {
             script {
-                // Access the global dockerImage variable for cleanup
-                dockerImage.stop()
-                dockerImage.remove()
+                // Check if dockerImage is not null before stopping and removing it
+                if (dockerImage != null) {
+                    dockerImage.stop()
+                    dockerImage.remove()
+                }
             }
         }
     }
